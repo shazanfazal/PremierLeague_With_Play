@@ -34,7 +34,7 @@ public class PremierLeagueManager implements LeagueManager{
         }
         return instanceOfPremierLeague;
     }
-        @Override
+    @Override
     public String addingANewClubToTheLeague(FootballClub nameOfNewClub) {
 
         String messageDeliver = "";  //to return the value from the method.
@@ -101,9 +101,9 @@ public class PremierLeagueManager implements LeagueManager{
         }else{
             //displaying the points table in the descending order
             SortingObj.sortingInDescendingOrder(leagueAddition);
-            //printing the sorted data
-            PrintTablesFormat.headingForViewPointsTable();
-            PrintTablesFormat.mainFormatTable();
+//            //printing the sorted data
+//            PrintTablesFormat.headingForViewPointsTable();
+//            PrintTablesFormat.mainFormatTable();
         }
         return leagueAddition;
     }
@@ -219,19 +219,21 @@ public class PremierLeagueManager implements LeagueManager{
     }
 
     //to compare the teams with win count (DSC)
-    public void sortByWinCount(){
+    public ArrayList<FootballClub> sortByWinCount(){
         leagueAddition.sort(new WinCountComparator().reversed());
+        return leagueAddition;
     }
 
     //to compare th teams with goal scored (DSC)
-    public void sortByGoalScored(){
+    public ArrayList<FootballClub> sortByGoalScored(){
         leagueAddition.sort(new GoalScoredComparator().reversed());
+        return leagueAddition;
     }
 
     //comparing using date and time (ASC)
-    public void sortByDateAndTime(){
+    public ArrayList<Match> sortByDateAndTime(){
         leaguePlayedMatches.sort(new DateAndTimeComparator());
-
+        return leaguePlayedMatches;
     }
 
     //random match is creating, when the user wants in the front end
@@ -316,10 +318,5 @@ public class PremierLeagueManager implements LeagueManager{
 
             }
         }
-    }
-
-    //for sample testing
-    public ArrayList<FootballClub> getLeague(){
-        return new ArrayList<>(leagueAddition);
     }
 }

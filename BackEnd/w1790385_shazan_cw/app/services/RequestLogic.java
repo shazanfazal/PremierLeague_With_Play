@@ -5,6 +5,8 @@ import models.FootballClub;
 import models.Match;
 import models.SportsClub;
 import utils.InputValidation;
+import utils.PrintTablesFormat;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -62,6 +64,9 @@ public class RequestLogic {
     }
     //to view the premier league table
     public void showPremierLeagueTable(){
+        //printing the sorted data
+        PrintTablesFormat.headingForViewPointsTable();
+        PrintTablesFormat.mainFormatTable();
         ArrayList<FootballClub> allTeamAvailable = managersDecisions.displayThePremierLeagueTable();
         for(FootballClub sortedDetails: allTeamAvailable){
             sortedDetails.getStatistics();

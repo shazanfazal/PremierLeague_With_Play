@@ -4,8 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.libs.Json;
 
-public class PremierLeagueUtil {
-    public static ObjectNode creatingResponses(Object response, boolean ok){
+public class ApplicationUtil {
+
+    public static ObjectNode createResponse(Object response, boolean ok) {
         ObjectNode result = Json.newObject();
         result.put("status", ok);
         if (response instanceof String)
