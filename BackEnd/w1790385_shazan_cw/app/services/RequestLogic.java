@@ -16,7 +16,9 @@ public class RequestLogic {
     private final String errorMessage = " Please check your spellings, Re-enter: ";
     private final String errorMessageTwo = " Only Numbers Allowed,Re-enter:  ";
 
-    //adding a new club to the league
+    /**
+     * adding a new club to the league with user input
+     */
     public void additionOfAnewClub() {
 
         //for the registration number
@@ -50,6 +52,9 @@ public class RequestLogic {
         //why FootballClub? so that i will be able to access the won,draw statistics when creating the match and updating it
     }
 
+    /**
+     * This will help to delegate a team from the club with user inputs
+     */
     public void delegatingATeamFromTheLeague() {
 
         System.out.print(" Enter The club name to be delegated: ");
@@ -62,7 +67,10 @@ public class RequestLogic {
             System.out.println("Sorry the club is not available");
         }
     }
-    //to view the premier league table
+
+    /**
+     * to view the premier league table
+     */
     public void showPremierLeagueTable(){
         //printing the sorted data
         PrintTablesFormat.headingForViewPointsTable();
@@ -74,7 +82,9 @@ public class RequestLogic {
         }
     }
 
-    //to show the matches played
+    /**
+     * to show the matches played
+     */
     public void matchesPlayedDetails(){
         ArrayList<Match> allMatchesPlayed =  managersDecisions.viewTheMatchesPlayed();
             for(Match matchesDetails: allMatchesPlayed){
@@ -88,7 +98,9 @@ public class RequestLogic {
             }
     }
 
-    //this is used to create the match and request relevant information from the user.
+    /**
+     * this is used to create the match and request relevant information from the user.
+     */
     public void creatingAMatch(){
         System.out.print(" Enter the match Day(1-31): ");
         InputValidation.intCheckerValidation(scan, " Only numbers allowed between 1-31, re-enter: ");
@@ -146,14 +158,17 @@ public class RequestLogic {
                 Match matchPlaying = new Match(homePlayingTeam,awayPlayingTeam,homeGoalCount,awayGoalCount,matchDatePlayed);
                 boolean addAMatchChecking = managersDecisions.addAPlayMatch(matchPlaying);
                 if (addAMatchChecking){
-                    System.out.printf(" \n%s score is %d  %s score is %d ",homePlayingTeam,homeGoalCount,awayPlayingTeam,awayGoalCount);
+                    System.out.printf(" %s score is %d  %s score is %d ",homePlayingTeam,homeGoalCount,awayPlayingTeam,awayGoalCount);
                     System.out.println("\n" + matchDatePlayed.toString());
                 }
                 break;
             }
         }
     }
-    //this will help to display te stats of the particular team.
+
+    /**
+     * this will help to display te stats of the particular team.
+     */
     public void displayStat(){
         System.out.print(" Enter a Premier League team: ");
         String premierLeagueTeam = InputValidation.alphabetChecker(scan,errorMessage);
@@ -161,12 +176,16 @@ public class RequestLogic {
         managersDecisions.displayStatisticsOfTheClub(premierLeagueTeam);
     }
 
-    //saving everything to the file.
+    /**
+     * saving everything to the file.
+     */
     public void saveToTheFile(){
         managersDecisions.savingToAFile();
     }
 
-    //reading from the file back to the arraylist
+    /**
+     * reading from the file back to the arraylist
+     */
     public void readFromTheFile(){
         managersDecisions.readingFromAFile();
     }

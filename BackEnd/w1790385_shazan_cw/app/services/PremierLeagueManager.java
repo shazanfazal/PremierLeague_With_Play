@@ -7,6 +7,7 @@ import utils.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class PremierLeagueManager implements LeagueManager{
     private ArrayList<FootballClub> leagueAddition = new ArrayList<>();   //to add only the clubs who will be eligible for the premier league Team
@@ -34,6 +35,12 @@ public class PremierLeagueManager implements LeagueManager{
         }
         return instanceOfPremierLeague;
     }
+
+    /**
+     * This method will help to add a new team to the premier league
+     * @param nameOfNewClub type of football team that will be added to the arrayList
+     * @return the string value or the message that will be printed will be returned from this method
+     */
     @Override
     public String addingANewClubToTheLeague(FootballClub nameOfNewClub) {
 
@@ -60,6 +67,11 @@ public class PremierLeagueManager implements LeagueManager{
             }
         }
 
+    /**
+     * This method will help to delete a premier league club
+     * @param delegatedTeam checks if the team is in the premier league
+     * @return a boolean value, if its exists it will return true, else it will return false.
+     */
     @Override
     public boolean deletingAClubFromTheLeague(String delegatedTeam){
         for (FootballClub clubsInLeague: leagueAddition){
@@ -72,6 +84,10 @@ public class PremierLeagueManager implements LeagueManager{
         return false;
     }
 
+    /**
+     * This method will return the statistics for a Team only in the premier League
+     * @param checkStatistics to check if the particular club exist in the Premier league
+     */
     @Override
     public void displayStatisticsOfTheClub(String checkStatistics) {
         boolean checkStat = false;
@@ -93,6 +109,10 @@ public class PremierLeagueManager implements LeagueManager{
         }
     }
 
+    /**
+     * This method will return the table for the whole Premier League
+     * @return the arrayList where all the Premier League are stored with its statistics
+     */
     @Override
     public ArrayList<FootballClub> displayThePremierLeagueTable() {
         if(leagueAddition.isEmpty()){
@@ -108,6 +128,11 @@ public class PremierLeagueManager implements LeagueManager{
         return leagueAddition;
     }
 
+    /**
+     * This method will help to play a match based on the teams the user selected
+     * @param addingAMatch match object class that is made as a param which will allow to make the match created
+     * @return boolean value if both the teams are thier the way the user selected then it will return true else false message will be printed for the user
+     */
     @Override
     public boolean addAPlayMatch(Match addingAMatch) {
         boolean checkingHomeTeamAvailability = false;
@@ -163,6 +188,10 @@ public class PremierLeagueManager implements LeagueManager{
         return checkingHomeTeamAvailability && checkingAwayTeamAvailability;
     }
 
+    /**
+     * this method will help to know what are the matches Played by the user and also the random matches Played
+     * @return the match played arrayList
+     */
     @Override
     public ArrayList<Match> viewTheMatchesPlayed() {
         //viewing the matches played for the user
@@ -172,6 +201,9 @@ public class PremierLeagueManager implements LeagueManager{
         return leaguePlayedMatches;
     }
 
+    /**
+     * This method will call the filHandling class which will help to save the data to the text file
+     */
     //saving the all the data into a binary stream file using the generic method created
     @Override
     public void savingToAFile() {
@@ -179,6 +211,9 @@ public class PremierLeagueManager implements LeagueManager{
         FileHandling.writingToAFile(fileToStoreMatchDetails,leaguePlayedMatches); //writing the Match played for each team to a different file
     }
 
+    /**
+     * The will help to read the data that is stored from the file back to the arrayList (Data Persistence)
+     */
     //reading the all the data that is stored in the file when the main thread starts
     @Override
     public void readingFromAFile() {
@@ -218,26 +253,13 @@ public class PremierLeagueManager implements LeagueManager{
         }
     }
 
-    //to compare the teams with win count (DSC)
-    public ArrayList<FootballClub> sortByWinCount(){
-        leagueAddition.sort(new WinCountComparator().reversed());
-        return leagueAddition;
-    }
-
-    //to compare th teams with goal scored (DSC)
-    public ArrayList<FootballClub> sortByGoalScored(){
-        leagueAddition.sort(new GoalScoredComparator().reversed());
-        return leagueAddition;
-    }
-
-    //comparing using date and time (ASC)
-    public ArrayList<Match> sortByDateAndTime(){
-        leaguePlayedMatches.sort(new DateAndTimeComparator());
-        return leaguePlayedMatches;
-    }
-
+    /**
+     * This Method is made to make the random match which will be called once the button is triggered in the UI
+     * @return a sample Stack which will store the random Matches Played
+     */
     //random match is creating, when the user wants in the front end
-    public void randomFootballMatchPlay(){
+    public Stack<Match> randomFootballMatchPlay(){
+        Stack<Match> allRandomMatch = new Stack<>();
 
         for(;;){ //the reason for infinite loop is because if the same team are selected it will loop until a random is found
             //checking if the arrayList is empty else cant start a match
@@ -249,7 +271,7 @@ public class PremierLeagueManager implements LeagueManager{
                 System.out.println(" Sorry you cant add any Match because only 1 Team is in the Premier League");
                 break;
             }else{
-                //date random
+                //date random created
                 int minYear = 15;
                 int maxYear = 21;
                 int yearGainResult = (int) Math.floor(Math.random() * (maxYear - minYear)) + 2015;
@@ -303,20 +325,40 @@ public class PremierLeagueManager implements LeagueManager{
 
                     //creating an automated date
                     DateAndTime matchDateOfPlay = new DateAndTime(dayGainResult,monthGainResult,yearGainResult,hoursGainResult,minutesHourGain);
+
                     //adding the match to the arrayList and showing who won the game
                     Match playedMatchOfTheTeams = new Match(homeTeamAssigning.getClubName(), awayTeamAssigning.getClubName(),homeTeamGoalValue,awayTeamGoalValue,matchDateOfPlay);
                     leaguePlayedMatches.add(playedMatchOfTheTeams);
-                    System.out.printf(" Match played between %s and %s ", homeTeamAssigning.getClubName(), awayTeamAssigning.getClubName());
-                    System.out.printf(" \n%s score is %d  %s score is %d ", homeTeamAssigning.getClubName(),homeTeamGoalValue, awayTeamAssigning.getClubName(),awayTeamGoalValue);
+                    System.out.printf(" \nMatch played between %s and %s\n", homeTeamAssigning.getClubName(), awayTeamAssigning.getClubName());
+                    System.out.printf(" %s score is %d  %s score is %d ", homeTeamAssigning.getClubName(),homeTeamGoalValue, awayTeamAssigning.getClubName(),awayTeamGoalValue);
                     System.out.println("\n" + matchDateOfPlay.toString());
+                    allRandomMatch.add(playedMatchOfTheTeams); //adding to the sample Stack Array
+                    PremierLeagueManager.getInstanceOfPremierLeagueManage().savingToAFile(); //saving the file again so that the data wont be lost in the ui                    break;
                     break;
 
                 }else{
                     System.out.println(" Sorry the auto-generated random has selected the same Team.");
                     System.out.println(" Making a new Match.............\n\n");
                 }
-
             }
         }
+        return allRandomMatch;
     }
 }
+//    //to compare the teams with win count (DSC)
+//    public ArrayList<FootballClub> sortByWinCount(){
+//        leagueAddition.sort(new WinCountComparator().reversed());
+//        return leagueAddition;
+//    }
+//
+//    //to compare th teams with goal scored (DSC)
+//    public ArrayList<FootballClub> sortByGoalScored(){
+//        leagueAddition.sort(new GoalScoredComparator().reversed());
+//        return leagueAddition;
+//    }
+//
+//    //comparing using date and time (ASC)
+//    public ArrayList<Match> sortByDateAndTime(){
+//        leaguePlayedMatches.sort(new DateAndTimeComparator());
+//        return leaguePlayedMatches;
+//    }
