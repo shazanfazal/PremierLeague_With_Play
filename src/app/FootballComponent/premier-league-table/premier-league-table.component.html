@@ -1,0 +1,35 @@
+<br/><br/>
+<div class = 'container col-12'>
+  <table class="table table-striped">
+    <thead class = 'col-header'>
+    <th scope = "col"> Club Name </th>
+    <th scope = "col"> Matches played </th>
+    <th scope = "col"> Won </th>
+    <th scope = "col"> Lost </th>
+    <th scope = "col"> Draw </th>
+    <th scope = "col"> GS </th>
+    <th scope = "col"> GR </th>
+    <th scope = "col"> GD </th>
+    <th scope = "col"> Points </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elements of addAllTeamsToView">
+        <td> {{elements.clubName}}</td>
+        <td> {{elements.noOfMatchesPlayed}}</td>
+        <td> {{elements.noOfMatchesWon}}</td>
+        <td> {{elements.noOfMatchesLost}}</td>
+        <td> {{elements.noOfMatchesDraw}}</td>
+        <td> {{elements.noOfGoalScored}}</td>
+        <td> {{elements.noOwnGoalReceived}}</td>
+        <td> {{elements.goalDiff}}</td>
+        <td> {{elements.noOfPoints}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Buttons for sorting -->
+  <div>
+    <button class = 'btn btn-dark btn-lg btn-block' (click)="onSortWithGS()" > Sort by GS </button>
+    <button class = 'btn btn-dark btn-lg btn-block' (click)="onSortWithWin()" > Sort by Win </button>
+    <br/><br/>
+  </div>
+</div>

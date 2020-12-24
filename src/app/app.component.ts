@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PremierLeagueService} from "./Services/premier-league.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FrontEnd-GUI';
+
 }

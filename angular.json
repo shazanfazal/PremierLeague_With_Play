@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "FrontEnd-GUI"
+  "defaultProject": "FrontEnd-GUI",
+  "cli": {
+    "analytics": false
+  }
 }

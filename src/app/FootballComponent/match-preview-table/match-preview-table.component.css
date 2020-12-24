@@ -1,0 +1,5 @@
+.container{
+  background: url("src/assets/bk.jpg");
+  background-size: cover;
+  background-position: center;
+}

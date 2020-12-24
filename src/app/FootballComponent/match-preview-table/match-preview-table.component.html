@@ -1,0 +1,34 @@
+<br/> <br/>
+<div class = 'container col-12'>
+  <div>
+    <input [(ngModel)] = "getPlayedMatchDate" class="form-control " id="tableSearch" type="text"
+         (input)= "onSearch()"   placeholder="Type something to search the Matches Played">
+  </div>
+  <br/><br/>
+  <table class="table table-striped">
+    <!--Header-->
+    <thead class = 'col-header'>
+    <th scope = "col"> Home Team </th>
+    <th scope = "col"> Away Team </th>
+    <th scope = "col"> Home Team Goal </th>
+    <th scope = "col"> Away Team Goal </th>
+    <th scope = "col"> Date </th>
+    </thead>
+    <!--body-->
+    <tbody>
+      <tr *ngFor="let allMatches of allMatchesPlayed">
+        <td> {{allMatches.homeTeamMatch}}</td>
+        <td> {{allMatches.awayTeamMatch}}</td>
+        <td> {{allMatches.homeGoalScored}}</td>
+        <td> {{allMatches.awayGoalScored}}</td>
+        <td> {{allMatches.matchDatePlayed.dayOfTheMonth}} / {{allMatches.matchDatePlayed.monthOfTheYear}} /
+          {{allMatches.matchDatePlayed.year}}  </td>
+      </tr>
+    </tbody>
+  </table>
+  <!--button to sort the date-->
+  <div>
+    <button class = 'btn btn-dark btn-lg btn-block' (click)="onSortDate()" > Sort by Date </button>
+    <br/><br/>
+  </div>
+</div>

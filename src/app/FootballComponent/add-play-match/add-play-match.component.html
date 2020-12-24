@@ -1,0 +1,43 @@
+<br/><br/>
+<div class="container col-12">
+  <div class = 'card'>
+    <!--card header -->
+    <div class = 'card-header'>
+      <h4> Want to play a Match? Click the button below </h4>
+
+    </div>
+    <!--card body-->
+    <div class = 'card-body'>
+      <button class = 'btn btn-dark'(click)="onPlay()" > Play a Match </button>
+    </div>
+
+    <br/>
+    <table  class="table table-striped">
+      <!--Headers for the table -->
+      <thead class = 'col-header'>
+      <th scope = "col"> Home Team </th>
+      <th scope = "col"> Away Team </th>
+      <th scope = "col"> Home Team Goal </th>
+      <th scope = "col"> Away Team Goal </th>
+      <th scope = "col"> Date </th>
+      <th scope = "col"> Message </th>
+      </thead>
+      <!--body Of the The table-->
+      <tbody>
+        <tr *ngFor="let matches of randomMatch">
+          <td> {{matches.homeTeamMatch}}</td>
+          <td> {{matches.awayTeamMatch}}</td>
+          <td> {{matches.homeGoalScored}}</td>
+          <td> {{matches.awayGoalScored}}</td>
+          <td> DATE {{matches.matchDatePlayed.dayOfTheMonth}} / {{matches.matchDatePlayed.monthOfTheYear}} /
+            {{matches.matchDatePlayed.year}} TIME: {{matches.matchDatePlayed.hourOfTheDay}} :
+            {{matches.matchDatePlayed.minutesOfTheDay}} </td>
+          <td *ngIf="matches.homeGoalScored > matches.awayGoalScored"> {{matches.homeTeamMatch}} Won against {{matches.awayTeamMatch}}  </td>
+          <td *ngIf="matches.homeGoalScored < matches.awayGoalScored"> {{matches.awayTeamMatch}} Won against {{matches.homeTeamMatch}}  </td>
+          <td *ngIf="matches.homeGoalScored === matches.awayGoalScored"> Match Played Between {{matches.homeTeamMatch}} VS {{matches.awayTeamMatch}} was a Draw </td>
+          <!--<span *ngIf="matches.homeGoalScored > matches.awayGoalScored"></span>-->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
