@@ -8,7 +8,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.PremierLeagueManager;
 import utils.SortingObj;
-
 import java.util.ArrayList;
 import java.util.Stack;
 
