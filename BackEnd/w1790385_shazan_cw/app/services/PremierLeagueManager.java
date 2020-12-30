@@ -7,17 +7,15 @@ import utils.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
 
 public class PremierLeagueManager implements LeagueManager{
+
     private ArrayList<FootballClub> leagueAddition = new ArrayList<>();   //to add only the clubs who will be eligible for the premier league Team
     private ArrayList<Match> leaguePlayedMatches = new ArrayList<>();    //to add all the matches played by the team
     private final File toSaveAllLeagueDetails = new File("leagueDetails.txt"); //to save all the league games
     private final File fileToStoreMatchDetails = new File("matchDetails.txt"); //to save all the Matches played
-    final int MAX_ALLOCATION_OF_TEAM = 20; //maximum team that can be added to the game
-    final int MAX_RANDOM_GOAL_THAT_CAN_BE_SCORED = 5; //maximum score that a team can play
+    private final int MAX_ALLOCATION_OF_TEAM = 20; //maximum team that can be added to the game
 
     //doing the synchronization so that the object will not be created once its already created in the jvm and doing with the multi thread allowance.
     //creating an instance variable
@@ -290,6 +288,9 @@ public class PremierLeagueManager implements LeagueManager{
 
                 //making sure that the same team is not selected
                 if(pickingTheHomeTeam != pickingTheAwayTeam){
+
+                    //maximum score that a team can play
+                    int MAX_RANDOM_GOAL_THAT_CAN_BE_SCORED = 5;
 
                     //making goal for home team.
                     int homeTeamGoalValue = (int) (Math.random() * MAX_RANDOM_GOAL_THAT_CAN_BE_SCORED); //random total goal scored

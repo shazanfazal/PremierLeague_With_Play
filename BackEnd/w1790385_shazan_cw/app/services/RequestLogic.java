@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RequestLogic {
-    private PremierLeagueManager managersDecisions = PremierLeagueManager.getInstanceOfPremierLeagueManage();
+    private final PremierLeagueManager managersDecisions = PremierLeagueManager.getInstanceOfPremierLeagueManage();
     private final Scanner scan = new Scanner(System.in);
     private final String errorMessage = " Please check your spellings, Re-enter: ";
     private final String errorMessageTwo = " Only Numbers Allowed,Re-enter:  ";

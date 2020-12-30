@@ -12,11 +12,17 @@ import play.api.mvc._
 @Singleton
 class FrontendController @Inject()(assets: Assets, errorHandler: HttpErrorHandler, config: Configuration, cc: ControllerComponents) extends AbstractController(cc) {
 
-  def index: Action[AnyContent] = assets.at("index.html")
+  def index:
+    Action[AnyContent] = assets.at("index.html")
 
-  def assetOrDefault(resource: String): Action[AnyContent] = if (resource.startsWith(config.get[String]("apiPrefix"))){
-    Action.async(response => errorHandler.onClientError(response, NOT_FOUND, "Response Not found"))
-  } else {
-    if (resource.contains(".")) assets.at(resource) else index
+  def assetOrDefault(resource: String):
+    Action[AnyContent] = if (resource.startsWith(config.get[String]("apiPrefix"))) {
+      Action.async(response => errorHandler.onClientError(response, NOT_FOUND, "Response Not found"))
+    } else {
+      if (resource.contains(".")) {
+        assets.at(resource)
+      } else {
+        index
+      }
   }
 }

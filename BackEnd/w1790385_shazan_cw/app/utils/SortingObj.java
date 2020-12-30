@@ -1,7 +1,5 @@
 package utils;
 
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 
 public class SortingObj {

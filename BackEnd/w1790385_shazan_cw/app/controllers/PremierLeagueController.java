@@ -14,7 +14,7 @@ import java.util.Stack;
 
 public class PremierLeagueController extends Controller {
 
-    PremierLeagueManager managerToUI = PremierLeagueManager.getInstanceOfPremierLeagueManage();
+    private final PremierLeagueManager managerToUI = PremierLeagueManager.getInstanceOfPremierLeagueManage();
     /**
      * This method will return a json node to the UI which helps to show the Premier League Teams
      * @return the JSon Node Data

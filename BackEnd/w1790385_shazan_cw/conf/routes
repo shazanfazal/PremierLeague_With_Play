@@ -4,9 +4,9 @@
 
 # Serve index page from public directory
 GET     /                     controllers.FrontendController.index()
-GET     /getTeams          controllers.PremierLeagueController.getTeams
-GET     /getMatchesPlayed   controllers.PremierLeagueController.getMatches
-GET     /randomMatch           controllers.PremierLeagueController.playRandomMatch
+GET     /api/getTeams          controllers.PremierLeagueController.getTeams
+GET     /api/getMatchesPlayed   controllers.PremierLeagueController.getMatches
+GET     /api/randomMatch           controllers.PremierLeagueController.playRandomMatch
 
 # Serve static assets under public directory
 GET     /*file                      controllers.FrontendController.assetOrDefault(file)

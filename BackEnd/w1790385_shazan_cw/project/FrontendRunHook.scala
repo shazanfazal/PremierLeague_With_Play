@@ -9,20 +9,20 @@ import scala.sys.process.Process
  */
 object FrontendRunHook {
   def apply(base: File): PlayRunHook = {
-    object UIBuildHook extends PlayRunHook {
+    object UIBuildHookProcess extends PlayRunHook {
 
-      var process: Option[Process] = None
+      var processingOption: Option[Process] = None
 
       /**
        * Change the commands in `FrontendCommands.scala` if you want to use Yarn.
        */
-      var install: String = FrontendCommands.dependencyInstall
-      var run: String = FrontendCommands.serve
+      var installDependencies: String = FrontendCommands.dependencyInstall
+      var runUI: String = FrontendCommands.serve
 
       // Windows requires npm commands prefixed with cmd /c
       if (System.getProperty("os.name").toLowerCase().contains("win")){
-        install = "cmd /c" + install
-        run = "cmd /c" + run
+        installDependencies = "cmd /c" + installDependencies
+        runUI = "cmd /c" + runUI
       }
 
       /**
@@ -30,7 +30,7 @@ object FrontendRunHook {
        * Run npm install if node modules are not installed.
        */
       override def beforeStarted(): Unit = {
-        if (!(base / "ui" / "node_modules").exists()) Process(install, base / "ui").!
+        if (!(base / "ui" / "node_modules").exists()) Process(installDependencies, base / "ui").!
       }
 
       /**
@@ -38,8 +38,8 @@ object FrontendRunHook {
        * Run npm start
        */
       override def afterStarted(): Unit = {
-        process = Option(
-          Process(run, base / "ui").run
+        processingOption = Option(
+          Process(runUI, base / "ui").run
         )
       }
 
@@ -48,12 +48,11 @@ object FrontendRunHook {
        * Cleanup frontend execution processes.
        */
       override def afterStopped(): Unit = {
-        process.foreach(_.destroy())
-        process = None
+        processingOption.foreach(_.destroy())
+        processingOption = None
       }
 
     }
-
-    UIBuildHook
+    UIBuildHookProcess
   }
 }
