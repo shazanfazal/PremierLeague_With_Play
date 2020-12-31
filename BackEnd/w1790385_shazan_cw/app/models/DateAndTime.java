@@ -99,7 +99,7 @@ public class DateAndTime implements Serializable, Comparable<DateAndTime>{  //th
 
     @Override
     public String toString(){
-        return "Date: "+ this.dayOfTheMonth + "-" + this.monthOfTheYear + "-" + this.year + "\tTime: " + this.hourOfTheDay + ":" + this.minutesOfTheDay;
+        return "Date: "+ this.dayOfTheMonth + "-" + this.monthOfTheYear + "-" + this.year + " Time: " + this.hourOfTheDay + ":" + this.minutesOfTheDay;
     }
 
     @Override

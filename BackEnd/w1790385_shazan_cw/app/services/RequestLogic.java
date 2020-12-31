@@ -87,14 +87,11 @@ public class RequestLogic {
      */
     public void matchesPlayedDetails(){
         ArrayList<Match> allMatchesPlayed =  managersDecisions.viewTheMatchesPlayed();
+        PrintTablesFormat.headingForViewMatch();
+        PrintTablesFormat.mainMatchTableFormat();
             for(Match matchesDetails: allMatchesPlayed){
-                System.out.println("--------------------------------------------------------------");
-                System.out.printf("Home Team %s \n",matchesDetails.getHomeTeamMatch());
-                System.out.printf("Away Team %s \n",matchesDetails.getAwayTeamMatch());
-                System.out.printf("Home Team Goal %s \n",matchesDetails.getHomeGoalScored());
-                System.out.printf("Away Team Goal %s \n",matchesDetails.getAwayGoalScored());
-                System.out.printf("%s \n\n",matchesDetails.getMatchDatePlayed());
-                System.out.println("-------------------------------------------------------------\n");
+                PrintTablesFormat.printValuesForMatchPreview(matchesDetails.getHomeTeamMatch(),matchesDetails.getAwayTeamMatch(),matchesDetails.getHomeGoalScored(),matchesDetails.getAwayGoalScored(),matchesDetails.getMatchDatePlayed());
+                System.out.println("*----------------------------------------------------------------------------------------------------------------------------");
             }
     }
 
