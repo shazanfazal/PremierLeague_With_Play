@@ -53,8 +53,8 @@ public class PremierLeagueController extends Controller {
 
         System.out.println("[GET RANDOM MATCH]");
         Stack<Match> matchesPlayed = managerToUI.randomFootballMatchPlay();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonData = objectMapper.convertValue(matchesPlayed,JsonNode.class);
+        ObjectMapper mappingRandomMatches = new ObjectMapper();
+        JsonNode jsonData = mappingRandomMatches.convertValue(matchesPlayed,JsonNode.class);
 
         managerToUI.savingToAFile();   //saving and reading the file so that the data will be stored properly without leakage
         managerToUI.readingFromAFile(); //reading the file again so that it will be update both to the file and the array
